@@ -3,3 +3,11 @@ results/
 *.zip
 __pycache__/
 .DS_Store
+
+# Reports and outputs
+outputs/
+*.pdf
+*.html
+Project_Report.md
+generate_pdf.py
+plot_roc.py

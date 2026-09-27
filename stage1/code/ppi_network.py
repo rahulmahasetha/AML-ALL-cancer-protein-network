@@ -23,22 +23,24 @@ from config import (
 )
 
 
-def build_ppi_network(mapped_proteins: set, id_to_name: dict):
+def build_ppi_network(mapped_proteins: set, id_to_name: dict, mapping_df: pd.DataFrame):
     """
     Build PPI subnetwork from STRING data.
 
     Parameters
     ----------
     mapped_proteins : set[str]
-        STRING protein IDs that are AML seed proteins.
+        STRING protein IDs that are AML or ALL seed proteins.
     id_to_name : dict[str, str]
         STRING ID → preferred_name.
+    mapping_df : pd.DataFrame
+        DataFrame with mapped proteins and their class_association.
 
     Returns
     -------
     G : nx.Graph
         Undirected weighted graph. Nodes have attribute 'node_type'
-        (either 'aml_seed' or 'neighbor') and 'protein_name'.
+        (either 'aml_seed', 'all_seed', or 'neighbor') and 'protein_name'.
     edge_df : pd.DataFrame
         Edge table with protein_A, protein_B, combined_score.
     network_stats : dict
@@ -94,19 +96,39 @@ def build_ppi_network(mapped_proteins: set, id_to_name: dict):
     for p1, p2, score in edges:
         G.add_edge(p1, p2, combined_score=score)
 
+    # Build a lookup for class_association
+    protein_to_class = {}
+    for _, row in mapping_df.iterrows():
+        if row["mapping_status"] == "mapped" and pd.notna(row["string_protein_id"]):
+            protein_to_class[row["string_protein_id"]] = row.get("class_association", "unknown")
+
     # Tag nodes as seed or neighbor
-    seed_in_network = set()
+    aml_seed_in_network = set()
+    all_seed_in_network = set()
     neighbor_nodes = set()
     for node in G.nodes():
         if node in mapped_proteins:
-            G.nodes[node]["node_type"] = "aml_seed"
-            seed_in_network.add(node)
+            c_assoc = protein_to_class.get(node, "")
+            if c_assoc == "AML-enriched":
+                G.nodes[node]["node_type"] = "aml_seed"
+                G.nodes[node]["association_group"] = "AML-enriched"
+                aml_seed_in_network.add(node)
+            elif c_assoc == "ALL-enriched":
+                G.nodes[node]["node_type"] = "all_seed"
+                G.nodes[node]["association_group"] = "ALL-enriched"
+                all_seed_in_network.add(node)
+            else:
+                G.nodes[node]["node_type"] = "neighbor"
+                G.nodes[node]["association_group"] = "neighbor"
+                neighbor_nodes.add(node)
         else:
             G.nodes[node]["node_type"] = "neighbor"
+            G.nodes[node]["association_group"] = "neighbor"
             neighbor_nodes.add(node)
 
         # Add protein name
         G.nodes[node]["protein_name"] = id_to_name.get(node, node)
+        G.nodes[node]["protein_id"] = node
 
     # --- Network statistics ---
     n_nodes = G.number_of_nodes()
@@ -117,18 +139,23 @@ def build_ppi_network(mapped_proteins: set, id_to_name: dict):
     avg_degree = np.mean(degrees) if degrees else 0
 
     # Seed vs neighbor degree stats
-    seed_degrees = [d for n, d in G.degree() if G.nodes[n]["node_type"] == "aml_seed"]
+    aml_degrees = [d for n, d in G.degree() if G.nodes[n]["node_type"] == "aml_seed"]
+    all_degrees = [d for n, d in G.degree() if G.nodes[n]["node_type"] == "all_seed"]
     neighbor_degrees = [d for n, d in G.degree() if G.nodes[n]["node_type"] == "neighbor"]
+    
+    seed_in_network = aml_seed_in_network | all_seed_in_network
 
     network_stats = {
         "total_nodes": n_nodes,
         "total_edges": n_edges,
-        "aml_seed_nodes": len(seed_in_network),
+        "aml_seed_nodes": len(aml_seed_in_network),
+        "all_seed_nodes": len(all_seed_in_network),
         "neighbor_nodes": len(neighbor_nodes),
         "connected_components": n_components,
         "density": round(density, 6),
         "avg_degree": round(avg_degree, 2),
-        "avg_seed_degree": round(np.mean(seed_degrees), 2) if seed_degrees else 0,
+        "avg_aml_degree": round(np.mean(aml_degrees), 2) if aml_degrees else 0,
+        "avg_all_degree": round(np.mean(all_degrees), 2) if all_degrees else 0,
         "avg_neighbor_degree": round(np.mean(neighbor_degrees), 2) if neighbor_degrees else 0,
         "seeds_not_in_network": len(mapped_proteins - seed_in_network),
     }
@@ -153,7 +180,7 @@ def build_ppi_network(mapped_proteins: set, id_to_name: dict):
             "combined_score": data["combined_score"],
         })
     edge_df = pd.DataFrame(edge_records)
-    edge_path = os.path.join(RESULTS_DIR, "ppi_edge_table.csv")
+    edge_path = os.path.join(RESULTS_DIR, "unified_ppi_network_edges.csv")
     edge_df.to_csv(edge_path, index=False)
     print(f"\n  Edge table saved to: {edge_path}")
 
@@ -161,15 +188,16 @@ def build_ppi_network(mapped_proteins: set, id_to_name: dict):
     node_records = []
     for node in G.nodes():
         node_records.append({
-            "protein": node,
+            "protein_id": node,
             "protein_name": G.nodes[node].get("protein_name", ""),
+            "association_group": G.nodes[node].get("association_group", "neighbor"),
             "node_type": G.nodes[node]["node_type"],
             "degree": G.degree(node),
         })
     node_df = pd.DataFrame(node_records).sort_values("degree", ascending=False)
-    node_path = os.path.join(RESULTS_DIR, "ppi_node_table.csv")
+    node_path = os.path.join(RESULTS_DIR, "ppi_node_metadata.csv")
     node_df.to_csv(node_path, index=False)
-    print(f"  Node table saved to: {node_path}")
+    print(f"  Node metadata table saved to: {node_path}")
 
     # --- Save stats ---
     stats_path = os.path.join(RESULTS_DIR, "network_statistics.csv")
@@ -177,13 +205,13 @@ def build_ppi_network(mapped_proteins: set, id_to_name: dict):
     print(f"  Network stats saved to: {stats_path}")
 
     # --- Network visualization ---
-    _generate_network_visualization(G, seed_in_network)
+    _generate_network_visualization(G, aml_seed_in_network, all_seed_in_network)
 
     print("\n✓ PPI network construction complete.")
     return G, edge_df, network_stats
 
 
-def _generate_network_visualization(G: nx.Graph, seed_nodes: set):
+def _generate_network_visualization(G: nx.Graph, aml_seed_nodes: set, all_seed_nodes: set):
     """Generate a network visualization with distinct seed/neighbor styles."""
     fig, ax = plt.subplots(figsize=(14, 10))
 
@@ -199,9 +227,9 @@ def _generate_network_visualization(G: nx.Graph, seed_nodes: set):
     # If still too large for layout, subsample
     if subG.number_of_nodes() > 500:
         # Keep all seeds + top-degree neighbors
-        seeds_in_sub = [n for n in subG.nodes() if n in seed_nodes]
+        seeds_in_sub = [n for n in subG.nodes() if n in aml_seed_nodes or n in all_seed_nodes]
         neighbors_by_degree = sorted(
-            [n for n in subG.nodes() if n not in seed_nodes],
+            [n for n in subG.nodes() if n not in aml_seed_nodes and n not in all_seed_nodes],
             key=lambda n: subG.degree(n), reverse=True
         )
         keep_nodes = set(seeds_in_sub) | set(neighbors_by_degree[:200])
@@ -214,8 +242,11 @@ def _generate_network_visualization(G: nx.Graph, seed_nodes: set):
     node_colors = []
     node_sizes = []
     for node in subG.nodes():
-        if node in seed_nodes:
-            node_colors.append("#E74C3C")  # Red for seeds
+        if node in aml_seed_nodes:
+            node_colors.append("#E74C3C")  # Red for AML seeds
+            node_sizes.append(120)
+        elif node in all_seed_nodes:
+            node_colors.append("#2ECC71")  # Green for ALL seeds
             node_sizes.append(120)
         else:
             node_colors.append("#3498DB")  # Blue for neighbors
@@ -228,18 +259,20 @@ def _generate_network_visualization(G: nx.Graph, seed_nodes: set):
 
     # Label seed nodes
     seed_labels = {n: subG.nodes[n].get("protein_name", n.split(".")[-1])
-                   for n in subG.nodes() if n in seed_nodes}
+                   for n in subG.nodes() if n in aml_seed_nodes or n in all_seed_nodes}
     if len(seed_labels) <= 50:
         nx.draw_networkx_labels(subG, pos, labels=seed_labels, font_size=6,
                                 font_weight="bold", ax=ax)
 
-    ax.set_title(f"AML PPI Subnetwork{title_suffix}", fontsize=14)
+    ax.set_title(f"AML/ALL Unified PPI Subnetwork{title_suffix}", fontsize=14)
 
     # Legend
     from matplotlib.lines import Line2D
     legend_elements = [
         Line2D([0], [0], marker="o", color="w", markerfacecolor="#E74C3C",
-               markersize=10, label="AML Seed Proteins"),
+               markersize=10, label="AML-Enriched Proteins"),
+        Line2D([0], [0], marker="o", color="w", markerfacecolor="#2ECC71",
+               markersize=10, label="ALL-Enriched Proteins"),
         Line2D([0], [0], marker="o", color="w", markerfacecolor="#3498DB",
                markersize=7, label="1-Hop Neighbors"),
     ]
@@ -247,7 +280,7 @@ def _generate_network_visualization(G: nx.Graph, seed_nodes: set):
     ax.axis("off")
     plt.tight_layout()
 
-    fig_path = os.path.join(RESULTS_DIR, "ppi_network.png")
+    fig_path = os.path.join(RESULTS_DIR, "unified_ppi_network.png")
     fig.savefig(fig_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
     print(f"  Network visualisation saved to: {fig_path}")

@@ -11,6 +11,7 @@ import os
 import sys
 import re
 import pandas as pd
+import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import STRING_INFO_FILE, RESULTS_DIR
@@ -139,9 +140,11 @@ def map_genes_to_proteins(selected_genes: pd.DataFrame):
     Returns
     -------
     mapping_df : pd.DataFrame
-        One row per selected gene with mapping result.
+        One row per selected gene with mapping result, including differential stats.
     mapped_proteins : set[str]
         Set of successfully mapped STRING protein IDs.
+    id_to_name: dict[str, str]
+        STRING ID -> preferred_name
     """
     print("\n" + "=" * 60)
     print("STEP 4: GENE → STRING PROTEIN MAPPING")
@@ -178,6 +181,12 @@ def map_genes_to_proteins(selected_genes: pd.DataFrame):
             "string_protein_id": string_id,
             "protein_name": protein_name,
             "mapping_status": status,
+            "class_association": row.get("class_association", ""),
+            "AML_mean": row.get("AML_mean", np.nan),
+            "ALL_mean": row.get("ALL_mean", np.nan),
+            "log2FC": row.get("log2_fold_change", np.nan),
+            "p_value": row.get("p_value", np.nan),
+            "adjusted_p_value": row.get("adjusted_p_value", np.nan),
         })
 
     mapping_df = pd.DataFrame(records)
@@ -188,6 +197,8 @@ def map_genes_to_proteins(selected_genes: pd.DataFrame):
     n_unmapped = n_total - n_mapped
     mapping_pct = round(100 * n_mapped / n_total, 1) if n_total > 0 else 0.0
 
+
+
     print(f"\n  Gene-to-protein mapping results:")
     print(f"    Total selected genes:      {n_total}")
     print(f"    Successfully mapped:       {n_mapped}")
@@ -195,16 +206,40 @@ def map_genes_to_proteins(selected_genes: pd.DataFrame):
     print(f"    Mapping percentage:        {mapping_pct}%")
     print(f"    Unique STRING proteins:    {len(mapped_proteins)}")
 
-    # Save
+    # Separate into mapped and unmapped
     os.makedirs(RESULTS_DIR, exist_ok=True)
-    map_path = os.path.join(RESULTS_DIR, "gene_protein_mapping.csv")
-    mapping_df.to_csv(map_path, index=False)
-    print(f"\n  Mapping table saved to: {map_path}")
+    
+    unmapped_df = mapping_df[mapping_df["mapping_status"] == "unmapped"]
+    unmapped_path = os.path.join(RESULTS_DIR, "unmapped_genes.csv")
+    unmapped_df.to_csv(unmapped_path, index=False)
+    
+    mapped_df = mapping_df[mapping_df["mapping_status"] == "mapped"].copy()
+    
+    # Differential proteins (all mapped)
+    diff_cols = ["gene", "string_protein_id", "protein_name", "AML_mean", "ALL_mean", "log2FC", "p_value", "adjusted_p_value", "class_association"]
+    # Add mapped_df columns if they exist
+    cols_to_keep = [c for c in diff_cols if c in mapped_df.columns]
+    differential_proteins = mapped_df[cols_to_keep].rename(columns={"string_protein_id": "protein_id"}).sort_values(by=["adjusted_p_value", "log2FC"], key=lambda col: np.abs(col) if col.name == "log2FC" else col, ascending=[True, False])
+    
+    diff_path = os.path.join(RESULTS_DIR, "differential_proteins.csv")
+    differential_proteins.to_csv(diff_path, index=False)
+    
+    # Split into AML and ALL enriched
+    aml_proteins = differential_proteins[differential_proteins["class_association"] == "AML-enriched"]
+    aml_path = os.path.join(RESULTS_DIR, "aml_enriched_proteins.csv")
+    aml_proteins.to_csv(aml_path, index=False)
+    
+    all_proteins = differential_proteins[differential_proteins["class_association"] == "ALL-enriched"]
+    all_path = os.path.join(RESULTS_DIR, "all_enriched_proteins.csv")
+    all_proteins.to_csv(all_path, index=False)
+    
+    print(f"    AML-enriched mapped:       {len(aml_proteins)}")
+    print(f"    ALL-enriched mapped:       {len(all_proteins)}")
+    print(f"\n  Mapping tables saved to {RESULTS_DIR}")
 
     if n_mapped > 0:
         print(f"\n  Sample mapped genes:")
-        mapped_rows = mapping_df[mapping_df["mapping_status"] == "mapped"].head(10)
-        for _, r in mapped_rows.iterrows():
+        for _, r in mapped_df.head(10).iterrows():
             print(f"    {r['extracted_symbol']:12s} → {r['string_protein_id']}")
 
     print("\n✓ Gene-to-protein mapping complete.")

@@ -1,10 +1,10 @@
 """
-Steps 2-3: Differential Expression Analysis & AML Gene Selection.
+Steps 2-3: Differential Expression Analysis & AML/ALL Gene Selection.
 
 Compares AML vs ALL expression for every gene using Welch's t-test,
 applies Benjamini-Hochberg FDR correction, selects genes meeting
 the configured significance and effect-size thresholds, and generates
-a volcano plot.
+a volcano plot for both AML-enriched and ALL-enriched genes.
 """
 
 import os
@@ -47,7 +47,7 @@ def run_differential_expression(expression, gene_meta, aml_ids, all_ids):
     de_results : pd.DataFrame
         Full differential-expression results for all genes.
     selected_genes : pd.DataFrame
-        Subset passing significance + effect-size thresholds.
+        Subset passing significance + effect-size thresholds for both AML and ALL.
     """
     print("\n" + "=" * 60)
     print("STEP 2: DIFFERENTIAL EXPRESSION ANALYSIS")
@@ -117,30 +117,45 @@ def run_differential_expression(expression, gene_meta, aml_ids, all_ids):
 
     # --- Step 3: Gene selection ---
     print("\n" + "=" * 60)
-    print("STEP 3: AML-RELEVANT GENE SELECTION")
+    print("STEP 3: CANDIDATE AML/ALL-ASSOCIATED GENE SELECTION")
     print("=" * 60)
-    print(f"  Criteria: adjusted_p_value < {ADJUSTED_PVALUE_THRESHOLD} "
-          f"AND |log2FC| > {LOG2FC_THRESHOLD}")
+    print(f"  Criteria: adjusted_p_value < {ADJUSTED_PVALUE_THRESHOLD} ")
+    print(f"  AML-enriched: log2FC > +{LOG2FC_THRESHOLD}")
+    print(f"  ALL-enriched: log2FC < -{LOG2FC_THRESHOLD}")
 
-    selected = de_results[
-        (de_results["adjusted_p_value"] < ADJUSTED_PVALUE_THRESHOLD)
-        & (de_results["log2_fold_change"].abs() > LOG2FC_THRESHOLD)
-    ].copy()
+    # Add class_association column
+    de_results["class_association"] = "non-significant"
+    de_results.loc[
+        (de_results["adjusted_p_value"] < ADJUSTED_PVALUE_THRESHOLD) & 
+        (de_results["log2_fold_change"] > LOG2FC_THRESHOLD), 
+        "class_association"
+    ] = "AML-enriched"
+    
+    de_results.loc[
+        (de_results["adjusted_p_value"] < ADJUSTED_PVALUE_THRESHOLD) & 
+        (de_results["log2_fold_change"] < -LOG2FC_THRESHOLD), 
+        "class_association"
+    ] = "ALL-enriched"
+
+    selected = de_results[de_results["class_association"].isin(["AML-enriched", "ALL-enriched"])].copy()
+    selected = selected.sort_values(by=["adjusted_p_value", "log2_fold_change"], ascending=[True, False]).reset_index(drop=True)
     selected["rank"] = range(1, len(selected) + 1)
     selected["effect_size"] = selected["log2_fold_change"]
 
-    sel_path = os.path.join(RESULTS_DIR, "selected_aml_genes.csv")
+    sel_path = os.path.join(RESULTS_DIR, "selected_differential_genes.csv")
     selected.to_csv(sel_path, index=False)
+    aml_count = (selected['class_association'] == 'AML-enriched').sum()
+    all_count = (selected['class_association'] == 'ALL-enriched').sum()
     print(f"  Selected genes: {len(selected)}")
-    print(f"    Up-regulated in AML: {(selected['log2_fold_change'] > 0).sum()}")
-    print(f"    Down-regulated in AML: {(selected['log2_fold_change'] < 0).sum()}")
+    print(f"    AML-enriched: {aml_count}")
+    print(f"    ALL-enriched: {all_count}")
     print(f"  Saved to: {sel_path}")
 
     if len(selected) > 0:
         print(f"\n  Top 10 selected genes:")
         for _, row in selected.head(10).iterrows():
             print(f"    {row['gene']:25s}  log2FC={row['log2_fold_change']:+.3f}  "
-                  f"adj_p={row['adjusted_p_value']:.2e}")
+                  f"adj_p={row['adjusted_p_value']:.2e}  [{row['class_association']}]")
 
     # --- Volcano plot ---
     _generate_volcano_plot(de_results)
@@ -155,36 +170,42 @@ def _generate_volcano_plot(de_results: pd.DataFrame):
     df["neg_log10_adj_p"] = -np.log10(df["adjusted_p_value"].clip(lower=1e-300))
 
     # Classify points
-    sig_mask = (
-        (df["adjusted_p_value"] < ADJUSTED_PVALUE_THRESHOLD)
-        & (df["log2_fold_change"].abs() > LOG2FC_THRESHOLD)
-    )
+    aml_mask = (df["adjusted_p_value"] < ADJUSTED_PVALUE_THRESHOLD) & (df["log2_fold_change"] > LOG2FC_THRESHOLD)
+    all_mask = (df["adjusted_p_value"] < ADJUSTED_PVALUE_THRESHOLD) & (df["log2_fold_change"] < -LOG2FC_THRESHOLD)
+    nonsig_mask = ~(aml_mask | all_mask)
 
     fig, ax = plt.subplots(figsize=(10, 7))
 
     # Non-significant
     ax.scatter(
-        df.loc[~sig_mask, "log2_fold_change"],
-        df.loc[~sig_mask, "neg_log10_adj_p"],
+        df.loc[nonsig_mask, "log2_fold_change"],
+        df.loc[nonsig_mask, "neg_log10_adj_p"],
         c="grey", alpha=0.4, s=8, label="Not significant",
     )
-    # Significant
+    # AML-enriched
     ax.scatter(
-        df.loc[sig_mask, "log2_fold_change"],
-        df.loc[sig_mask, "neg_log10_adj_p"],
-        c="crimson", alpha=0.7, s=15, label="Selected AML genes",
+        df.loc[aml_mask, "log2_fold_change"],
+        df.loc[aml_mask, "neg_log10_adj_p"],
+        c="crimson", alpha=0.7, s=15, label="AML-enriched",
+    )
+    # ALL-enriched
+    ax.scatter(
+        df.loc[all_mask, "log2_fold_change"],
+        df.loc[all_mask, "neg_log10_adj_p"],
+        c="blue", alpha=0.7, s=15, label="ALL-enriched",
     )
 
     # Threshold lines
-    ax.axhline(-np.log10(ADJUSTED_PVALUE_THRESHOLD), ls="--", c="blue", alpha=0.5,
+    ax.axhline(-np.log10(ADJUSTED_PVALUE_THRESHOLD), ls="--", c="green", alpha=0.5,
                label=f"adj. p = {ADJUSTED_PVALUE_THRESHOLD}")
-    ax.axvline(-LOG2FC_THRESHOLD, ls="--", c="green", alpha=0.5)
-    ax.axvline(LOG2FC_THRESHOLD, ls="--", c="green", alpha=0.5,
-               label=f"|log2FC| = {LOG2FC_THRESHOLD}")
+    ax.axvline(-LOG2FC_THRESHOLD, ls="--", c="purple", alpha=0.5,
+               label=f"log2FC = -{LOG2FC_THRESHOLD}")
+    ax.axvline(LOG2FC_THRESHOLD, ls="--", c="orange", alpha=0.5,
+               label=f"log2FC = {LOG2FC_THRESHOLD}")
 
     ax.set_xlabel("log₂ Fold-Change (AML / ALL)", fontsize=12)
     ax.set_ylabel("-log₁₀ Adjusted P-value", fontsize=12)
-    ax.set_title("Volcano Plot: AML vs ALL Differential Expression", fontsize=14)
+    ax.set_title("Volcano Plot: Differential Expression (AML vs ALL)", fontsize=14)
     ax.legend(fontsize=9)
     plt.tight_layout()
 

@@ -9,6 +9,7 @@ as 'candidate AML-associated proteins' — not proven AML drivers.
 import os
 import sys
 import time
+import json
 
 # Ensure src/ is on the path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -83,7 +84,7 @@ def main():
     # Steps 5-6: PPI Network Construction
     # =========================================================================
     from ppi_network import build_ppi_network
-    G, edge_df, network_stats = build_ppi_network(mapped_proteins, id_to_name)
+    G, edge_df, network_stats = build_ppi_network(mapped_proteins, id_to_name, mapping_df)
 
     if G.number_of_nodes() == 0:
         print("\n⚠ PPI network is empty. Pipeline cannot continue.")
@@ -99,24 +100,23 @@ def main():
     # Step 9: Permutation Test
     # =========================================================================
     from permutation_test import run_permutation_test
-    n_seeds = (centrality_all["node_type"] == "aml_seed").sum()
-    perm_results = run_permutation_test(centrality_all, n_seeds)
+    n_aml = (centrality_all["node_type"] == "aml_seed").sum()
+    n_all = (centrality_all["node_type"] == "all_seed").sum()
+    perm_results = run_permutation_test(centrality_all, n_aml, n_all)
 
-    # =========================================================================
     # Step 10: Functional Enrichment
-    # =========================================================================
+    
     from enrichment import run_enrichment
     enrichment_df = run_enrichment(ranking_seeds, mapped_proteins, id_to_name)
 
-    # =========================================================================
+    
     # Step 11: Independent Validation
-    # =========================================================================
+    
     from validation import run_independent_validation
     validation_df = run_independent_validation(selected_genes)
 
-    # =========================================================================
     # FINAL SUMMARY
-    # =========================================================================
+    
     elapsed = time.time() - start_time
     _print_final_summary(
         data, de_results, selected_genes, mapping_df, mapped_proteins,
@@ -156,7 +156,8 @@ def _print_final_summary(
     print(f"\n  ── PPI Network ──")
     print(f"  Total nodes:                 {network_stats['total_nodes']}")
     print(f"  Total edges:                 {network_stats['total_edges']}")
-    print(f"  AML seed nodes:              {network_stats['aml_seed_nodes']}")
+    print(f"  AML-enriched seed nodes:     {network_stats['aml_seed_nodes']}")
+    print(f"  ALL-enriched seed nodes:     {network_stats['all_seed_nodes']}")
     print(f"  1-hop neighbor nodes:        {network_stats['neighbor_nodes']}")
     print(f"  Connected components:        {network_stats['connected_components']}")
     print(f"  Network density:             {network_stats['density']}")
@@ -169,24 +170,27 @@ def _print_final_summary(
     print(f"\n  ── Permutation Test ──")
     if perm_results and not (isinstance(perm_results.get("p_value"), float)
                              and perm_results["p_value"] != perm_results["p_value"]):
-        print(f"  Observed mean centrality:    {perm_results.get('observed_mean_centrality', 'N/A')}")
-        print(f"  Empirical p-value:           {perm_results.get('empirical_p_value', 'N/A')}")
-        p = perm_results.get("empirical_p_value", 1.0)
-        if p < 0.05:
-            print(f"  → SIGNIFICANT: AML seed proteins have higher centrality than chance.")
+        if "aml_p_value" in perm_results:
+            print(f"  AML Empirical p-value:       {perm_results.get('aml_p_value', 'N/A')}")
+            print(f"  ALL Empirical p-value:       {perm_results.get('all_p_value', 'N/A')}")
+            print(f"  Combined Empirical p-value:  {perm_results.get('combined_p_value', 'N/A')}")
         else:
-            print(f"  → Not significant at p < 0.05 level.")
+            print(f"  Empirical p-value:           {perm_results.get('empirical_p_value', 'N/A')}")
 
     print(f"\n  ── Enrichment ──")
-    if enrichment_df is not None and len(enrichment_df) > 0:
-        sig_enrich = enrichment_df[enrichment_df["fdr"].astype(float) < 0.05] if "fdr" in enrichment_df.columns else pd.DataFrame()
-        print(f"  Total enriched terms:        {len(enrichment_df)}")
-        print(f"  Significant (FDR < 0.05):    {len(sig_enrich)}")
-        if len(sig_enrich) > 0:
-            top3 = sig_enrich.head(3)
-            print(f"  Top enriched pathways:")
-            for _, row in top3.iterrows():
-                print(f"    • {row['description'][:55]}")
+    if enrichment_df is not None and isinstance(enrichment_df, dict):
+        for group, df in enrichment_df.items():
+            if len(df) > 0:
+                sig_enrich = df[df["fdr"].astype(float) < 0.05] if "fdr" in df.columns else pd.DataFrame()
+                print(f"  {group} Total enriched terms:        {len(df)}")
+                print(f"  {group} Significant (FDR < 0.05):    {len(sig_enrich)}")
+                if len(sig_enrich) > 0:
+                    top3 = sig_enrich.head(3)
+                    print(f"  {group} Top enriched pathways:")
+                    for _, row in top3.iterrows():
+                        print(f"    • {row['description'][:55]}")
+            else:
+                print(f"  {group} Enrichment not available or empty.")
     else:
         print(f"  Enrichment not available (API call failed or skipped).")
 
@@ -208,10 +212,43 @@ def _print_final_summary(
     result_files = sorted(os.listdir(RESULTS_DIR)) if os.path.isdir(RESULTS_DIR) else []
     for f in result_files:
         fpath = os.path.join(RESULTS_DIR, f)
-        size_kb = os.path.getsize(fpath) / 1024
-        print(f"    {f:<45s} ({size_kb:.1f} KB)")
+        if os.path.isfile(fpath):
+            size_kb = os.path.getsize(fpath) / 1024
+            print(f"    {f:<45s} ({size_kb:.1f} KB)")
 
     print(f"\n  Pipeline completed in {elapsed:.1f} seconds.")
+
+    # Generate experiment_summary.json
+    summary_data = {
+        "data": {
+            "total_genes": len(de_results),
+            "aml_samples": len(data['aml_sample_ids']),
+            "all_samples": len(data['all_sample_ids'])
+        },
+        "differential_expression": {
+            "significant_genes": int(sig_genes),
+            "selected_genes": len(selected_genes)
+        },
+        "gene_protein_mapping": {
+            "mapped_genes": int(n_mapped),
+            "total_genes_to_map": int(n_total),
+            "unique_string_proteins": len(mapped_proteins)
+        },
+        "ppi_network": {
+            "total_nodes": network_stats['total_nodes'],
+            "total_edges": network_stats['total_edges'],
+            "aml_seed_nodes": network_stats['aml_seed_nodes'],
+            "all_seed_nodes": network_stats.get('all_seed_nodes', 0),
+            "neighbor_nodes": network_stats['neighbor_nodes']
+        },
+        "permutation_test": perm_results if perm_results else {}
+    }
+    
+    os.makedirs("outputs", exist_ok=True)
+    with open(os.path.join("outputs", "experiment_summary.json"), "w") as f:
+        json.dump(summary_data, f, indent=4)
+        
+    print(f"  Summary saved to outputs/experiment_summary.json")
 
     print("\n" + "═" * 64)
     print("  NOTE: All results are CANDIDATE AML-associated proteins")

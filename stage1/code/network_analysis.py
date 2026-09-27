@@ -87,6 +87,7 @@ def compute_centrality_and_rank(G: nx.Graph):
         records.append({
             "protein": node,
             "protein_name": G.nodes[node].get("protein_name", ""),
+            "association_group": G.nodes[node].get("association_group", "unknown"),
             "node_type": G.nodes[node].get("node_type", "unknown"),
             "degree": G.degree(node),
             "degree_centrality": degree_cent.get(node, 0.0),
@@ -132,32 +133,44 @@ def compute_centrality_and_rank(G: nx.Graph):
     print(f"\n  All-network centrality saved to: {all_path}")
     print(f"  Total proteins ranked: {len(centrality_all)}")
 
-    # Ranking 2: AML seeds only
-    ranking_seeds = centrality_all[centrality_all["node_type"] == "aml_seed"].copy()
-    ranking_seeds = ranking_seeds.sort_values("combined_score", ascending=False)
-    ranking_seeds["rank"] = range(1, len(ranking_seeds) + 1)
-
     # Select final output columns
     seed_output_cols = [
-        "rank", "protein", "protein_name", "degree", "degree_centrality",
+        "rank", "protein_id", "protein_name", "association_group", "degree", "degree_centrality",
         "betweenness", "closeness", "combined_score",
     ]
+    
+    # Combined seeds ranking
+    ranking_seeds = centrality_all[centrality_all["node_type"].isin(["aml_seed", "all_seed"])].copy()
+    ranking_seeds = ranking_seeds.rename(columns={"protein": "protein_id"})
+    ranking_seeds = ranking_seeds.sort_values("combined_score", ascending=False)
+    ranking_seeds["rank"] = range(1, len(ranking_seeds) + 1)
+    
     ranking_seeds_out = ranking_seeds[seed_output_cols].copy()
-
-    seed_path = os.path.join(RESULTS_DIR, "final_protein_ranking.csv")
+    
+    seed_path = os.path.join(RESULTS_DIR, "protein_network_ranking.csv")
     ranking_seeds_out.to_csv(seed_path, index=False)
-    print(f"  AML seed protein ranking saved to: {seed_path}")
-    print(f"  AML seed proteins ranked: {len(ranking_seeds_out)}")
+    
+    aml_ranking = ranking_seeds_out[ranking_seeds_out["association_group"] == "AML-enriched"].copy()
+    aml_ranking["rank"] = range(1, len(aml_ranking) + 1)
+    aml_ranking.to_csv(os.path.join(RESULTS_DIR, "aml_protein_ranking.csv"), index=False)
+    
+    all_ranking = ranking_seeds_out[ranking_seeds_out["association_group"] == "ALL-enriched"].copy()
+    all_ranking["rank"] = range(1, len(all_ranking) + 1)
+    all_ranking.to_csv(os.path.join(RESULTS_DIR, "all_protein_ranking.csv"), index=False)
+
+    print(f"  Combined protein ranking saved to: {seed_path}")
+    print(f"  AML seed proteins ranked: {len(aml_ranking)}")
+    print(f"  ALL seed proteins ranked: {len(all_ranking)}")
 
     # Print top candidates
     top_n = min(TOP_N_PROTEINS, len(ranking_seeds_out))
     if top_n > 0:
-        print(f"\n  Top {top_n} Candidate AML-Associated Proteins:")
-        print(f"  {'Rank':<6} {'Protein Name':<15} {'Degree':<8} "
+        print(f"\n  Top {top_n} Candidate Associated Proteins:")
+        print(f"  {'Rank':<6} {'Protein Name':<15} {'Group':<14} {'Degree':<8} "
               f"{'Betweenness':<14} {'Closeness':<12} {'Combined':<10}")
-        print("  " + "-" * 65)
+        print("  " + "-" * 80)
         for _, row in ranking_seeds_out.head(top_n).iterrows():
-            print(f"  {int(row['rank']):<6} {row['protein_name']:<15} "
+            print(f"  {int(row['rank']):<6} {row['protein_name']:<15} {row['association_group']:<14} "
                   f"{int(row['degree']):<8} {row['betweenness']:<14.6f} "
                   f"{row['closeness']:<12.6f} {row['combined_score']:<10.6f}")
 
@@ -177,12 +190,13 @@ def _generate_ranking_plot(ranking_df: pd.DataFrame):
     fig, ax = plt.subplots(figsize=(12, 7))
     y_pos = range(len(top))
 
-    bars = ax.barh(y_pos, top["combined_score"].values, color="#E74C3C", alpha=0.8)
+    bar_colors = ["#E74C3C" if g == "AML-enriched" else "#2ECC71" for g in top["association_group"].values]
+    bars = ax.barh(y_pos, top["combined_score"].values, color=bar_colors, alpha=0.8)
     ax.set_yticks(y_pos)
     ax.set_yticklabels(top["protein_name"].values, fontsize=9)
     ax.invert_yaxis()  # Highest rank on top
     ax.set_xlabel("Combined Centrality Score", fontsize=12)
-    ax.set_title("Top Candidate AML-Associated Proteins\n(Ranked by Combined Centrality)",
+    ax.set_title("Top Candidate Associated Proteins\n(Ranked by Combined Centrality)",
                  fontsize=13)
 
     # Add score labels
