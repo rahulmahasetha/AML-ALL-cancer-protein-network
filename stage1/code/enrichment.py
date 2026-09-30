@@ -34,7 +34,7 @@ def run_enrichment(
     Parameters
     ----------
     candidate_proteins : pd.DataFrame
-        The ranked AML seed proteins (from final_protein_ranking.csv).
+        The ranked AML seed proteins (from protein_network_ranking.csv).
         Must have column 'protein' with STRING IDs.
     all_mapped_proteins : set[str]
         All successfully mapped STRING protein IDs (background universe).
@@ -125,20 +125,49 @@ def run_enrichment(
         return enrichment_df.sort_values("fdr").reset_index(drop=True)
 
     results_dict = {}
-    
+
     for group_name, df_group in [("AML", aml_candidates), ("ALL", all_candidates), ("COMBINED", candidate_proteins)]:
         enrichment_df = perform_group_enrichment(df_group, group_name)
         results_dict[group_name] = enrichment_df
-        
+
         group_dir = os.path.join(RESULTS_DIR, "enrichment", group_name)
         os.makedirs(group_dir, exist_ok=True)
-        
+
         enrich_path = os.path.join(group_dir, "enrichment_results.csv")
         enrichment_df.to_csv(enrich_path, index=False)
         print(f"  Saved {group_name} enrichment to {enrich_path}")
-        
+
         if len(enrichment_df) > 0:
             _generate_enrichment_plot(enrichment_df, group_name, group_dir)
+
+    # --- Consolidated summary: AML + ALL side by side in one file ---
+    aml_df = results_dict.get("AML", pd.DataFrame())
+    all_df = results_dict.get("ALL", pd.DataFrame())
+
+    frames = []
+    if len(aml_df) > 0:
+        aml_df = aml_df.copy()
+        aml_df.insert(0, "group", "AML-enriched")
+        frames.append(aml_df)
+    if len(all_df) > 0:
+        all_df = all_df.copy()
+        all_df.insert(0, "group", "ALL-enriched")
+        frames.append(all_df)
+
+    if frames:
+        consolidated = pd.concat(frames, ignore_index=True).sort_values(["group", "fdr"])
+        consolidated_path = os.path.join(RESULTS_DIR, "enrichment_results_all_groups.csv")
+        consolidated.to_csv(consolidated_path, index=False)
+        print(f"\n  Consolidated AML + ALL enrichment saved to: {consolidated_path}")
+
+    # Copy AML and ALL plots to the top-level stage1 folder for easy access
+    import shutil
+    for group_name in ("AML", "ALL"):
+        src = os.path.join(RESULTS_DIR, "enrichment", group_name, "enrichment_plot.png")
+        dst = os.path.join(RESULTS_DIR, f"enrichment_plot_{group_name.lower()}.png")
+        if os.path.exists(src):
+            shutil.copy2(src, dst)
+            print(f"  {group_name} enrichment plot copied to: {dst}")
 
     print("\n✓ Functional enrichment complete.")
     return results_dict
@@ -206,7 +235,7 @@ def _generate_enrichment_plot(enrichment_df: pd.DataFrame, group_name: str, grou
 
 
 if __name__ == "__main__":
-    ranking_path = os.path.join(RESULTS_DIR, "final_protein_ranking.csv")
+    ranking_path = os.path.join(RESULTS_DIR, "protein_network_ranking.csv")
     if os.path.exists(ranking_path):
         candidate = pd.read_csv(ranking_path)
         # For standalone run, we don't have the full mapped set or id_to_name

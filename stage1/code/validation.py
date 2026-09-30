@@ -205,7 +205,7 @@ def run_independent_validation(selected_genes: pd.DataFrame):
 
 
 if __name__ == "__main__":
-    sel_path = os.path.join(RESULTS_DIR, "selected_aml_genes.csv")
+    sel_path = os.path.join(RESULTS_DIR, "selected_differential_genes.csv")
     if os.path.exists(sel_path):
         selected = pd.read_csv(sel_path)
         run_independent_validation(selected)
