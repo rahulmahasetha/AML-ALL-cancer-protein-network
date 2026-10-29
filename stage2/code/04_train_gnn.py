@@ -53,6 +53,7 @@ def train(model, loader, optimizer, criterion):
         out = model(data.x, data.edge_index, data.batch)
         loss = criterion(out, data.y)
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=2.0)
         optimizer.step()
         total_loss += loss.item() * data.num_graphs
     return total_loss / len(loader.dataset)
@@ -113,15 +114,20 @@ def run_training_seed(model_type, params, train_dataset, val_dataset, seed, devi
     
     optimizer = torch.optim.Adam(model.parameters(), lr=params['lr'], weight_decay=params['weight_decay'])
     
-    criterion = torch.nn.CrossEntropyLoss(weight=class_weights.to(device) if params.get('use_weights', True) else None)
+    criterion = torch.nn.CrossEntropyLoss(
+        weight=class_weights.to(device) if params.get('use_weights', True) else None,
+        label_smoothing=0.1
+    )
     
     best_val_loss = float('inf')
     best_val_auc = 0.0
     best_model_state = None
-    patience = 20
+    patience = 40
     patience_counter = 0
     
-    for epoch in range(1, 151):
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=10, min_lr=1e-5)
+    
+    for epoch in range(1, 301):
         for data in train_dataset:
             data.to(device)
         for data in val_dataset:
@@ -129,6 +135,9 @@ def run_training_seed(model_type, params, train_dataset, val_dataset, seed, devi
             
         train_loss = train(model, train_loader, optimizer, criterion)
         val_loss, val_acc, val_auc = test(model, val_loader, criterion)
+        
+        # Step the scheduler based on validation loss
+        scheduler.step(val_loss)
         
         # Early stopping based on val_loss
         if val_loss < best_val_loss:
@@ -160,8 +169,11 @@ def main():
         {'hidden_dim': 32, 'dropout': 0.3, 'lr': 0.005, 'weight_decay': 5e-4, 'pooling': 'mean', 'use_weights': True},
         {'hidden_dim': 64, 'dropout': 0.5, 'lr': 0.001, 'weight_decay': 1e-4, 'pooling': 'mean', 'use_weights': True},
         {'hidden_dim': 64, 'dropout': 0.5, 'lr': 0.005, 'weight_decay': 5e-4, 'pooling': 'max', 'use_weights': True},
-        {'hidden_dim': 128, 'dropout': 0.5, 'lr': 0.0005, 'weight_decay': 1e-4, 'pooling': 'mean', 'use_weights': True},
+        {'hidden_dim': 128, 'dropout': 0.5, 'lr': 0.001, 'weight_decay': 1e-4, 'pooling': 'mean', 'use_weights': True},
+        {'hidden_dim': 128, 'dropout': 0.3, 'lr': 0.005, 'weight_decay': 5e-4, 'pooling': 'max', 'use_weights': True},
+        {'hidden_dim': 256, 'dropout': 0.5, 'lr': 0.001, 'weight_decay': 1e-4, 'pooling': 'mean', 'use_weights': True},
         {'hidden_dim': 64, 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 5e-4, 'pooling': 'mean', 'use_weights': False},
+        {'hidden_dim': 128, 'dropout': 0.5, 'lr': 0.0005, 'weight_decay': 1e-3, 'pooling': 'mean', 'use_weights': True},
     ]
     
     models = ['GCN', 'GAT', 'SAGE']

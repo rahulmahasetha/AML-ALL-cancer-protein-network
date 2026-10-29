@@ -57,5 +57,5 @@ python3 stage2/code/04_train_gnn.py
 python3 stage2/code/05_evaluate_model.py
 
 # Run Stage 3 (Interpretation)
-python3 stage_3_interpretation/code/interpretation.py
+python3 stage3/code/interpretation.py
 ```

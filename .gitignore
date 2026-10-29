@@ -1,13 +1,30 @@
+# Data and model files
 data/
-results/
+*.pt
+*.pkl
+*.csv
 *.zip
-__pycache__/
-.DS_Store
 
-# Reports and outputs
+# Generated results and outputs
+results/
 outputs/
+*.xlsx
+*.png
+*.jpg
+*.jpeg
 *.pdf
 *.html
+
+# Python cache & OS files
+__pycache__/
+*.pyc
+.DS_Store
+
+# Documents and reports
 Project_Report.md
+AML_ALL_PPI_GNN_paper.md
+AML_ALL_PPI_GNN_paper_FINAL.md
 generate_pdf.py
 plot_roc.py
+export_results_excel.py
+generate_pdf_report.py

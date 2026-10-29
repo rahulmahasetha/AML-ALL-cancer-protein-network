@@ -47,16 +47,19 @@ def run_interpretation(top_n_gnn=50, top_n_stage1=50, consensus_threshold=0.15):
     # 9. Sort descending by consensus score
     consensus_filtered.sort_values(by='S_consensus', ascending=False, inplace=True)
     
-    os.makedirs(os.path.join("outputs", "stage3"), exist_ok=True)
+    out_dirs = [os.path.join("outputs", "stage3"), os.path.join("stage3", "results"), os.path.join("results", "stage3")]
+    for d in out_dirs:
+        os.makedirs(d, exist_ok=True)
     
     # Separate into AML-enriched and ALL-enriched
     aml_consensus = consensus_filtered[consensus_filtered['association_group'] == 'AML-enriched'].copy()
     all_consensus = consensus_filtered[consensus_filtered['association_group'] == 'ALL-enriched'].copy()
     
     # Save the files
-    consensus_filtered.to_csv(os.path.join("outputs", "stage3", "consensus_biomarkers.csv"), index=False)
-    aml_consensus.to_csv(os.path.join("outputs", "stage3", "consensus_aml_enriched.csv"), index=False)
-    all_consensus.to_csv(os.path.join("outputs", "stage3", "consensus_all_enriched.csv"), index=False)
+    for d in out_dirs:
+        consensus_filtered.to_csv(os.path.join(d, "consensus_biomarkers.csv"), index=False)
+        aml_consensus.to_csv(os.path.join(d, "consensus_aml_enriched.csv"), index=False)
+        all_consensus.to_csv(os.path.join(d, "consensus_all_enriched.csv"), index=False)
     
     # Print results
     print(f"Selected Threshold for S_consensus: {consensus_threshold}")
@@ -98,10 +101,10 @@ def run_interpretation(top_n_gnn=50, top_n_stage1=50, consensus_threshold=0.15):
     ]
     ax.legend(handles=legend_elements)
     
-    plt.tight_layout()
-    fig.savefig(os.path.join("outputs", "stage3", "consensus_scatter.png"), dpi=150)
+    for d in out_dirs:
+        fig.savefig(os.path.join(d, "consensus_scatter.png"), dpi=150)
     plt.close(fig)
-    print("\nConsensus Scatter Plot saved to outputs/stage3/consensus_scatter.png")
+    print("\nConsensus Scatter Plot saved.")
     
     # Secondary Analysis: The old Fixed Top-N Intersection
     print("\n" + "-" * 40)
@@ -127,7 +130,8 @@ def run_interpretation(top_n_gnn=50, top_n_stage1=50, consensus_threshold=0.15):
     }
     
     summary_df = pd.DataFrame([summary])
-    summary_df.to_csv(os.path.join("outputs", "stage3", "interpretation_summary.csv"), index=False)
+    for d in out_dirs:
+        summary_df.to_csv(os.path.join(d, "interpretation_summary.csv"), index=False)
     
     print("\n✓ Stage 3 Interpretation complete.")
     
