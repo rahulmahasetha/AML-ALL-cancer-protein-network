@@ -1,0 +1,2 @@
+n_permutations,total_network_proteins,aml_observed_mean,aml_p_value,all_observed_mean,all_p_value,combined_observed_mean,combined_p_value,random_seed
+1000,3695,0.206413,0.001998,0.24257,0.000999,0.233689,0.000999,42

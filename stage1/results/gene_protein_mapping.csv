@@ -1,0 +1,400 @@
+gene,gene_description,extracted_symbol,string_protein_id,protein_name,mapping_status
+U22376_cds2_s_at,C-myb gene extracted from Human (c-myb) gene; complete primary cds; and five complete alternatively spliced cds,C-MYB,,,unmapped
+X59417_at,PROTEASOME IOTA CHAIN,PROTEASOME,,,unmapped
+M31211_s_at,MYL1 Myosin light chain (alkali),MYL1,9606.ENSP00000307280,MYL1,mapped
+M55150_at,FAH Fumarylacetoacetate,FAH,9606.ENSP00000385080,FAH,mapped
+L13278_at,CRYZ Crystallin zeta (quinone reductase),CRYZ,9606.ENSP00000399805,CRYZ,mapped
+D26156_s_at,Transcriptional activator hSNF2b,TRANSCRIPTIONAL,,,unmapped
+U09087_s_at,Thymopoietin beta mRNA,THYMOPOIETIN,,,unmapped
+M92287_at,CCND3 Cyclin D3,CCND3,9606.ENSP00000362082,CCND3,mapped
+U05259_rna1_at,MB-1 gene,MB-1,,,unmapped
+M28170_at,CD19 CD19 antigen,CD19,9606.ENSP00000313419,CD19,mapped
+X74262_at,RETINOBLASTOMA BINDING PROTEIN P48,RETINOBLASTOMA,,,unmapped
+S50223_at,HKR-T1,HKR-T1,,,unmapped
+AF009426_at,Clone 22 mRNA; alternative splice variant alpha-1,,,,unmapped
+L47738_at,Inducible protein mRNA,INDUCIBLE,,,unmapped
+D38073_at,MCM3 Minichromosome maintenance deficient (S. cerevisiae) 3,MCM3,9606.ENSP00000480987,MCM3,mapped
+X63469_at,GTF2E2 General transcription factor TFIIE beta subunit; 34 kD,GTF2E2,9606.ENSP00000348168,GTF2E2,mapped
+X52142_at,CTPS CTP synthetase,CTPS,,,unmapped
+Z15115_at,TOP2B Topoisomerase (DNA) II beta (180kD),TOP2B,9606.ENSP00000264331,TOP2B,mapped
+M31523_at,TCF3 Transcription factor 3 (E2A immunoglobulin enhancer binding factors E12/E47),TCF3,9606.ENSP00000262965,TCF3,mapped
+M81933_at,CDC25A Cell division cycle 25A,CDC25A,9606.ENSP00000303706,CDC25A,mapped
+J05243_at,SPTAN1 Spectrin; alpha; non-erythrocytic 1 (alpha-fodrin),SPTAN1,9606.ENSP00000487444,SPTAN1,mapped
+M31303_rna1_at,Oncoprotein 18 (Op18) gene,ONCOPROTEIN,,,unmapped
+Y08612_at,RABAPTIN-5 protein,RABAPTIN-5,,,unmapped
+L49229_f_at,GB DEF = Retinoblastoma susceptibility protein (RB1) gene; with a 3 bp deletion in exon 22 (L11910 bases 161855-162161),RETINOBLASTOMA,,,unmapped
+HG1612-HT1612_at,Macmarcks,MACMARCKS,,,unmapped
+U20998_at,SRP9 Signal recognition particle 9 kD protein,SRP9,9606.ENSP00000305230,SRP9,mapped
+U32944_at,Cytoplasmic dynein light chain 1 (hdlc1) mRNA,,,,unmapped
+U35451_at,Heterochromatin protein p25 mRNA,HETEROCHROMATIN,,,unmapped
+M91432_at,ACADM Acyl-Coenzyme A dehydrogenase; C-4 to C-12 straight chain,ACADM,9606.ENSP00000359871,ACADM,mapped
+X97267_rna1_s_at,LPAP gene,LPAP,,,unmapped
+D63880_at,KIAA0159 gene,KIAA0159,,,unmapped
+AF012024_s_at,Integrin cytoplasmic domain associated protein (Icap-1a) mRNA,INTEGRIN,,,unmapped
+X76648_at,GLRX Glutaredoxin (thioltransferase),GLRX,9606.ENSP00000369314,GLRX,mapped
+U72342_at,PLATELET-ACTIVATING FACTOR ACETYLHYDROLASE 45 KD SUBUNIT,ACETYLHYDROLASE,,,unmapped
+M61853_at,CYP2C18 Cytochrome P450; subfamily IIC (mephenytoin 4-hydroxylase); polypeptide 18,CYP2C18,9606.ENSP00000285979,CYP2C18,mapped
+M13792_at,ADA Adenosine deaminase,ADA,9606.ENSP00000361965,ADA,mapped
+U26266_s_at,DHPS Deoxyhypusine synthase,DHPS,9606.ENSP00000210060,DHPS,mapped
+U82759_at,GB DEF = Homeodomain protein HoxA9 mRNA,HOMEODOMAIN,,,unmapped
+U29175_at,Transcriptional activator hSNF2b,TRANSCRIPTIONAL,,,unmapped
+U90552_at,Butyrophilin (BTF5) mRNA,BUTYROPHILIN,,,unmapped
+X15949_at,IRF2 Interferon regulatory factor 2,IRF2,9606.ENSP00000377218,IRF2,mapped
+M29540_at,CARCINOEMBRYONIC ANTIGEN PRECURSOR,ANTIGEN,,,unmapped
+X56411_rna1_at,ADH4 gene for class II alcohol dehydrogenase (pi subunit); exon 1,ADH4,9606.ENSP00000424630,ADH4,mapped
+U33822_at,Tax1-binding protein TXBP181 mRNA,TAX1-BINDING,,,unmapped
+U53468_at,NADH:ubiquinone oxidoreductase subunit B13 (B13) mRNA,NADH,,,unmapped
+Z69881_at,Adenosine triphosphatase; calcium,ADENOSINE,,,unmapped
+M84371_rna1_s_at,CD19 gene,CD19,9606.ENSP00000313419,CD19,mapped
+J03473_at,ADPRT ADP-ribosyltransferase (NAD+; poly (ADP-ribose) polymerase),ADPRT,,,unmapped
+U49844_at,Protein kinase ATR mRNA,ATR,9606.ENSP00000343741,ATR,mapped
+M63488_at,RPA1 Replication protein A1 (70kD),RPA1,9606.ENSP00000254719,RPA1,mapped
+M21551_rna1_at,Neuromedin B mRNA,NEUROMEDIN,,,unmapped
+D86967_at,KIAA0212 gene,KIAA0212,,,unmapped
+X66899_at,EWSR1 Ewing sarcoma breakpoint region 1,EWSR1,9606.ENSP00000400142,EWSR1,mapped
+X76061_at,P130 mRNA for 130K protein,P130,,,unmapped
+M29194_at,LIPC Lipase; hepatic,LIPC,9606.ENSP00000299022,LIPC,mapped
+D43950_at,T-COMPLEX PROTEIN 1; EPSILON SUBUNIT,T-COMPLEX,,,unmapped
+U88666_at,Serine kinase SRPK2 mRNA,SERINE,,,unmapped
+M60527_at,DCK Deoxycytidine kinase,DCK,9606.ENSP00000286648,DCK,mapped
+M29696_at,IL7R Interleukin 7 receptor,IL7R,9606.ENSP00000306157,IL7R,mapped
+J03589_at,UBIQUITIN-LIKE PROTEIN GDX,UBIQUITIN-LIKE,,,unmapped
+L42572_at,Motor protein,MOTOR,,,unmapped
+D43948_at,KIAA0097 gene,KIAA0097,,,unmapped
+X66401_cds1_at,LMP2 gene extracted from H.sapiens genes TAP1; TAP2; LMP2; LMP7 and DOB,LMP2,,,unmapped
+U62136_at,Putative enterocyte differentiation promoting factor mRNA; partial cds,PUTATIVE,,,unmapped
+U50136_rna1_at,Leukotriene C4 synthase (LTC4S) gene,LEUKOTRIENE,,,unmapped
+D86479_at,Non-lens beta gamma-crystallin like protein (AIM1) mRNA; partial cds,NON-LENS,,,unmapped
+D14658_at,KIAA0102 gene,KIAA0102,,,unmapped
+L05148_at,Protein tyrosine kinase related mRNA sequence,,,,unmapped
+M77142_at,NUCLEOLYSIN TIA-1,NUCLEOLYSIN,,,unmapped
+U38846_at,Stimulator of TAR RNA binding (SRB) mRNA,STIMULATOR,,,unmapped
+X62535_at,DAGK1 Diacylglycerol kinase; alpha (80kD),DAGK1,,,unmapped
+X51521_at,VIL2 Villin 2 (ezrin),VIL2,,,unmapped
+L07956_at,GBE1 Glucan (1;4-alpha-); branching enzyme 1 (glycogen branching enzyme; Andersen disease; glycogen storage disease type IV),GBE1,9606.ENSP00000410833,GBE1,mapped
+L06797_s_at,PROBABLE G PROTEIN-COUPLED RECEPTOR LCR1 HOMOLOG,PROBABLE,,,unmapped
+D87078_at,KIAA0235 gene; partial cds,KIAA0235,,,unmapped
+M22898_at,TP53 Tumor protein p53 (Li-Fraumeni syndrome),TP53,9606.ENSP00000269305,TP53,mapped
+X14850_at,HISTONE H2A.X,HISTONE,,,unmapped
+Z19574_rna1_at,Cytokeratin 17,CYTOKERATIN,,,unmapped
+D32050_at,AARS Alanyl-tRNA synthetase,AARS,,,unmapped
+U03911_at,MSH2 DNA repair protein MSH2,MSH2,9606.ENSP00000233146,MSH2,mapped
+X04325_at,GJB1 Gap junction protein; beta 1; 32kD (connexin 32; Charcot-Marie-Tooth neuropathy; X-linked),GJB1,9606.ENSP00000354900,GJB1,mapped
+M11722_at,Terminal transferase mRNA,,,,unmapped
+X15414_at,ALDR1 Aldehyde reductase 1 (low Km aldose reductase),ALDR1,,,unmapped
+Z21507_at,EEF1D Eukaryotic translation elongation factor 1 delta (guanine nucleotide exchange protein),EEF1D,9606.ENSP00000410059,EEF1D,mapped
+J05032_at,ASPARTYL-TRNA SYNTHETASE,ASPARTYL-TRNA,,,unmapped
+U28833_at,Down syndrome critical region protein (DSCR1) mRNA,DOWN,,,unmapped
+M83233_at,TCF12 Transcription factor 12 (HTF4; helix-loop-helix transcription factors 4),TCF12,9606.ENSP00000388940,TCF12,mapped
+M19888_at,SPRR1B Small proline-rich protein 1B (cornifin),SPRR1B,9606.ENSP00000306461,SPRR1B,mapped
+D49950_at,Liver mRNA for interferon-gamma inducing factor(IGIF),,,,unmapped
+M33680_at,26-kDa cell surface protein TAPA-1 mRNA,,,,unmapped
+X68560_at,SP3 Sp3 transcription factor,SP3,9606.ENSP00000310301,SP3,mapped
+L20298_at,Transcription factor (CBFB) mRNA; 3' end,TRANSCRIPTION,,,unmapped
+M89957_at,IGB Immunoglobulin-associated beta (B29),IGB,,,unmapped
+U27460_at,Uridine diphosphoglucose pyrophosphorylase mRNA,URIDINE,,,unmapped
+U65928_at,JUN V-jun avian sarcoma virus 17 oncogene homolog,JUN,9606.ENSP00000360266,JUN,mapped
+S76617_at,BLK Protein-tyrosine kinase blk,BLK,9606.ENSP00000259089,BLK,mapped
+U09413_at,ZNF135 Zinc finger protein 135 (clone pHZ-17),ZNF135,9606.ENSP00000441410,ZNF135,mapped
+X63753_at,SON SON DNA binding protein,SON,9606.ENSP00000348984,SON,mapped
+Y07604_at,Nucleoside-diphosphate kinase,,,,unmapped
+HG2855-HT2995_at,Heat Shock Protein; 70 Kda (Gb:Y00371),HEAT,,,unmapped
+HG4126-HT4396_at,Zinc Finger Protein Hzf4,ZINC,,,unmapped
+M29551_at,SERINE/THREONINE PROTEIN PHOSPHATASE 2B CATALYTIC SUBUNIT; BETA ISOFORM,SERINE,,,unmapped
+X59543_at,RIBONUCLEOSIDE-DIPHOSPHATE REDUCTASE M1 CHAIN,M1,,,unmapped
+X74801_at,T-COMPLEX PROTEIN 1; GAMMA SUBUNIT,T-COMPLEX,,,unmapped
+M15796_at,PCNA Proliferating cell nuclear antigen,PCNA,9606.ENSP00000368458,PCNA,mapped
+U59877_s_at,Low-Mr GTP-binding protein (RAB31) mRNA,LOW-MR,,,unmapped
+M33336_at,PRKAR1A CAMP-dependent protein kinase regulatory subunit type I,PRKAR1A,9606.ENSP00000376475,PRKAR1A,mapped
+Z68747_at,GB DEF = Imogen 38,IMOGEN,,,unmapped
+U77948_at,KAI1 Kangai 1 (suppression of tumorigenicity 6; prostate; CD82 antigen (R2 leukocyte antigen; antigen detected by monoclonal and antibody IA4)),KAI1,,,unmapped
+M11147_at,FTL Ferritin; light polypeptide,FTL,9606.ENSP00000366525,FTL,mapped
+L41870_at,RB1 Retinoblastoma 1 (including osteosarcoma),RB1,9606.ENSP00000267163,RB1,mapped
+D88270_at,GB DEF = (lambda) DNA for immunoglobin light chain,,,,unmapped
+X17042_at,PRG1 Proteoglycan 1; secretory granule,PRG1,,,unmapped
+U00802_s_at,Drebrin E,DREBRIN,,,unmapped
+X95735_at,Zyxin,ZYXIN,,,unmapped
+U41060_at,Breast cancer; estrogen regulated LIV-1 protein (LIV-1) mRNA; partial cds,BREAST,,,unmapped
+U79285_at,GLYCYLPEPTIDE N-TETRADECANOYLTRANSFERASE,GLYCYLPEPTIDE,,,unmapped
+M68864_at,ORF mRNA,ORF,,,unmapped
+U90552_s_at,Butyrophilin (BTF5) mRNA,BUTYROPHILIN,,,unmapped
+D83785_at,KIAA0200 gene,KIAA0200,,,unmapped
+L25931_s_at,LBR Lamin B receptor,LBR,9606.ENSP00000339883,LBR,mapped
+U80457_at,Transcription factor SIM2 long form mRNA,TRANSCRIPTION,,,unmapped
+D55654_at,MDH1 Malate dehydrogenase 1; NAD (soluble),MDH1,,,unmapped
+M58297_at,ZNF42 Zinc finger protein 42 (myeloid-specific retinoic acid-responsive),ZNF42,,,unmapped
+L10413_at,FNTA Farnesyltransferase; CAAX box; alpha,FNTA,9606.ENSP00000303423,FNTA,mapped
+X77366_at,TCF11 Transcription factor 11 (basic leucine zipper type),TCF11,,,unmapped
+L49219_f_at,GB DEF = Retinoblastoma susceptibility protein (RB1) L486W 4 bp deletion mutant (resulting in premature stop at amino acid 490) gene; exon 16 (L11910 bases 76983-77136),RETINOBLASTOMA,,,unmapped
+X04085_rna1_at,Catalase (EC 1.11.1.6) 5'flank and exon 1 mapping to chromosome 11; band p13 (and joined CDS),CATALASE,,,unmapped
+M86406_at,ACTN2 Actinin alpha 2 ,ACTN2,9606.ENSP00000355537,ACTN2,mapped
+M34458_rna1_s_at,Lamin B gene extracted from Human lamin B mRNA,LAMIN,,,unmapped
+U79291_at,Clone 23721 mRNA sequence,,,,unmapped
+M62762_at,ATP6C Vacuolar H+ ATPase proton channel subunit,ATP6C,,,unmapped
+M12959_s_at,TCRA T cell receptor alpha-chain,TCRA,,,unmapped
+L28010_at,HnRNP F protein mRNA,HNRNP,,,unmapped
+U63289_at,RNA-binding protein CUG-BP/hNab50 (NAB50) mRNA,RNA-BINDING,,,unmapped
+D63391_at,Platelet activating factor acetylhydrolase IB gamma-subunit,PLATELET,,,unmapped
+D38524_at,NT5 5' nucleotidase (CD73),NT5,,,unmapped
+M86873_s_at,GB DEF = Type A plasminogen related gene; exon 3 and complete cds,,,,unmapped
+M19684_at,GB DEF = Alpha-1-antitrypsin-related protein gene; exons 3; 4 and 5,,,,unmapped
+U50939_at,Amyloid precursor protein-binding protein 1 mRNA,AMYLOID,,,unmapped
+Y12670_at,LEPR Leptin receptor,LEPR,9606.ENSP00000330393,LEPR,mapped
+X16901_at,TRANSCRIPTION INITIATION FACTOR IIF; BETA SUBUNIT,TRANSCRIPTION,,,unmapped
+HG2846-HT2983_at,Dihydrofolate Reductase; Alt. Splice 6,DIHYDROFOLATE,,,unmapped
+Z49194_at,OBF-1 mRNA for octamer binding factor 1,OBF-1,,,unmapped
+X89576_at,Putative MT4-MMP protein,PUTATIVE,,,unmapped
+L38951_at,Importin beta subunit mRNA,IMPORTIN,,,unmapped
+AF005043_at,Poly(ADP-ribose) glycohydrolase (hPARG) mRNA,POLY,,,unmapped
+U73737_at,GTBP DNA G/T mismatch-binding protein,GTBP,,,unmapped
+U50928_at,PKD2 Autosomal dominant polycystic kidney disease type II,PKD2,9606.ENSP00000237596,PKD2,mapped
+X65644_at,IMMUNODEFICIENCY VIRUS TYPE I ENHANCER-BINDING PROTEIN 2,VIRUS,,,unmapped
+HG1400-HT1400_s_at,Carboxyl Methyltransferase; Aspartate; Alt. Splice 1,CARBOXYL,,,unmapped
+U90546_at,Butyrophilin (BTF4) mRNA,BUTYROPHILIN,,,unmapped
+U62961_at,Succinyl CoA:3-oxoacid CoA transferase precursor (OXCT) mRNA,SUCCINYL,,,unmapped
+M73547_at,POLYPOSIS LOCUS PROTEIN 1,POLYPOSIS,,,unmapped
+U47077_at,DNA-dependent protein kinase catalytic subunit (DNA-PKcs) mRNA,DNA-DEPENDENT,,,unmapped
+X66171_at,CMRF35 mRNA,CMRF35,,,unmapped
+X86691_at,218kD Mi-2 protein,MI-2,,,unmapped
+AF015950_at,GB DEF = Telomerase reverse transcriptase (hTRT) mRNA,TELOMERASE,,,unmapped
+U31814_at,Transcriptional regulator homolog RPD3 mRNA,TRANSCRIPTIONAL,,,unmapped
+U10485_at,Lymphoid-restricted membrane protein (Jaw1) mRNA,,,,unmapped
+D00763_at,GAPD Glyceraldehyde-3-phosphate dehydrogenase,GAPD,,,unmapped
+S46622_at,Calcineurin A catalytic subunit [human; testis; mRNA; 2134 nt],CALCINEURIN,,,unmapped
+U49020_cds2_s_at,MEF2A gene (myocyte-specific enhancer factor 2A; C9 form) extracted from Human myocyte-specific enhancer factor 2A (MEF2A) gene; first coding,MEF2A,9606.ENSP00000453095,MEF2A,mapped
+M92439_at,130 KD LEUCINE-RICH PROTEIN,KD,,,unmapped
+X15573_at,PFKL Phosphofructokinase (liver type),PFKL,9606.ENSP00000269848,PFKL,mapped
+M37435_at,CSF1 Colony-stimulating factor 1 (M-CSF),CSF1,9606.ENSP00000327513,CSF1,mapped
+U68063_at,Putative splice factor transformer2-beta mRNA,PUTATIVE,,,unmapped
+X82240_rna1_at,TCL1 gene (T cell leukemia) extracted from H.sapiens mRNA for Tcell leukemia/lymphoma 1,TCL1,,,unmapped
+U90902_at,Clone 23612 mRNA sequence,,,,unmapped
+X66533_at,GUANYLATE CYCLASE SOLUBLE; BETA-1 CHAIN,GUANYLATE,,,unmapped
+L41067_at,Transcription factor NFATx mRNA,TRANSCRIPTION,,,unmapped
+U72936_s_at,X-LINKED HELICASE II,X-LINKED,,,unmapped
+X77533_at,Activin type II receptor,ACTIVIN,,,unmapped
+Z35102_at,Ndr protein kinase,NDR,,,unmapped
+Z14982_rna1_at,MHC-encoded proteasome subunit gene LAMP7-E1 gene (proteasome subunit LMP7) extracted from H.sapiens gene for major histocompatibility complex encoded proteasome subunit LMP7,MHC-ENCODED,,,unmapped
+U90549_at,Non-histone chromosomal protein (NHC) mRNA,NON-HISTONE,,,unmapped
+M86752_at,TRANSFORMATION-SENSITIVE PROTEIN IEF SSP 3521,IEF,,,unmapped
+D38128_at,PTGIR Prostaglandin I2 (prostacyclin) receptor (IP),PTGIR,9606.ENSP00000291294,PTGIR,mapped
+D63477_at,KIAA0143 gene; partial cds,KIAA0143,,,unmapped
+D87446_at,KIAA0257 gene; partial cds,KIAA0257,,,unmapped
+X69141_at,FARNESYL-DIPHOSPHATE FARNESYLTRANSFERASE,,,,unmapped
+J04621_at,SDC2 Syndecan 2 (heparan sulfate proteoglycan 1; cell surface-associated; fibroglycan),SDC2,9606.ENSP00000307046,SDC2,mapped
+X59350_at,CD22 CD22 antigen,CD22,9606.ENSP00000085219,CD22,mapped
+D87076_at,KIAA0239 gene; partial cds,KIAA0239,,,unmapped
+U28042_at,DEAD box RNA helicase-like protein mRNA,DEAD,,,unmapped
+J03626_rna1_s_at,UMPS gene extracted from Human UMP synthase mRNA,UMPS,9606.ENSP00000232607,UMPS,mapped
+U94836_at,ERPROT 213-21 mRNA,ERPROT,,,unmapped
+M23379_at,RASA1 GTPase-activating protein ras p21 (RASA),RASA1,9606.ENSP00000274376,RASA1,mapped
+D80001_at,KIAA0179 gene; partial cds,KIAA0179,,,unmapped
+X63468_at,GTF2E1 General transcription factor TFIIE alpha subunit; 56 kD,GTF2E1,9606.ENSP00000283875,GTF2E1,mapped
+U07139_at,CAB3b mRNA for calcium channel beta3 subunit,CAB3B,,,unmapped
+U73936_at,Soluble protein Jagged mRNA; partial cds,SOLUBLE,,,unmapped
+U49248_at,Canalicular multispecific organic anion transporter (cMOAT); gene,CANALICULAR,,,unmapped
+L00634_s_at,FNTA Farnesyltransferase; CAAX box; alpha,FNTA,9606.ENSP00000303423,FNTA,mapped
+U61232_at,Tubulin-folding cofactor E mRNA,TUBULIN-FOLDING,,,unmapped
+M16038_at,LYN V-yes-1 Yamaguchi sarcoma viral related oncogene homolog,LYN,9606.ENSP00000428924,LYN,mapped
+L40391_at,(clone s153) mRNA fragment,,,,unmapped
+D80006_at,KIAA0184 gene; partial cds,KIAA0184,,,unmapped
+U79274_at,Clone 23733 mRNA,,,,unmapped
+D50918_at,KIAA0128 gene; partial cds,KIAA0128,,,unmapped
+L02547_at,CSTF1 Cleavage stimulation factor; 3' pre-RNA; subunit 1; 50kD,CSTF1,9606.ENSP00000217109,CSTF1,mapped
+J04615_at,SNRPN Small nuclear ribonucleoprotein polypeptide N,SNRPN,9606.ENSP00000494831,SNRPN,mapped
+U84388_at,Death domain containing protein CRADD mRNA,DEATH,,,unmapped
+U56833_at,VHL binding protein-1 (VBP-1) mRNA; partial cds,VHL,9606.ENSP00000256474,VHL,mapped
+U97105_at,Dihydropyrimidinase related protein-2,,,,unmapped
+D84276_at,CD38 CD38 antigen (p45),CD38,9606.ENSP00000226279,CD38,mapped
+AB003698_at,Cdc7-related kinase,CDC7-RELATED,,,unmapped
+L33930_s_at,CD24 signal transducer mRNA and 3' region,CD24,9606.ENSP00000481841,CD24,mapped
+M27504_s_at,GB DEF = Topoisomerase type II (Topo II) mRNA; partial cds,TOPOISOMERASE,,,unmapped
+D21262_at,KIAA0035 gene; partial cds,KIAA0035,,,unmapped
+M29971_at,MGMT 6-O-methylguanine-DNA methyltransferase (MGMT),MGMT,9606.ENSP00000302111,MGMT,mapped
+M63838_s_at,Interferon-gamma induced protein (IFI 16) gene,,,,unmapped
+U37055_rna1_s_at,Hepatocyte growth factor-like protein gene,HEPATOCYTE,,,unmapped
+L14848_s_at,MHC class I-related protein mRNA,MHC,,,unmapped
+Z34975_at,LDLC mRNA,LDLC,,,unmapped
+X77307_at,5-HYDROXYTRYPTAMINE 2B RECEPTOR,,,,unmapped
+X90846_s_at,MST1 Macrophage stimulating 1 (hepatocyte growth factor-like),MST1,9606.ENSP00000414287,MST1,mapped
+D83032_at,Nuclear protein; NP220,NP220,,,unmapped
+U43885_at,Grb2-associated binder-1 mRNA,GRB2-ASSOCIATED,,,unmapped
+U33286_at,Chromosome segregation gene homolog CAS mRNA,CHROMOSOME,,,unmapped
+L10373_at,MXS1 Membrane component; X chromosome; surface marker 1,MXS1,,,unmapped
+U30521_at,FRAP FK506 binding protein 12-rapamycin associated protein,FRAP,,,unmapped
+D13627_at,KIAA0002 gene,KIAA0002,,,unmapped
+X96752_at,L-3-hydroxyacyl-CoA dehydrogenase,,,,unmapped
+HG4582-HT4987_at,Glucocorticoid Receptor; Beta,GLUCOCORTICOID,,,unmapped
+M23197_at,CD33 CD33 antigen (differentiation antigen),CD33,9606.ENSP00000262262,CD33,mapped
+L38608_at,ALCAM Activated leucocyte cell adhesion molecule,ALCAM,9606.ENSP00000305988,ALCAM,mapped
+U16954_at,(AF1q) mRNA,AF1Q,,,unmapped
+D63486_at,KIAA0152 gene,KIAA0152,,,unmapped
+AB000449_at,VRK1,VRK1,9606.ENSP00000216639,VRK1,mapped
+M80254_at,PEPTIDYL-PROLYL CIS-TRANS ISOMERASE; MITOCHONDRIAL PRECURSOR,PEPTIDYL-PROLYL,,,unmapped
+U81556_at,Hypothetical protein A4 mRNA,HYPOTHETICAL,,,unmapped
+D86983_at,KIAA0230 gene; partial cds,KIAA0230,,,unmapped
+L20321_at,STK2 Protein serine/threonine kinase stk2,STK2,,,unmapped
+M21904_at,MDU1 Antigen identified by monoclonal antibodies 4F2; TRA1.10; TROP4; and T43,MDU1,,,unmapped
+D84294_at,TPRD,TPRD,,,unmapped
+S76965_at,Protein kinase inhibitor [human; neuroblastoma cell line SH-SY-5Y; mRNA; 2147 nt],,,,unmapped
+M81182_s_at,PXMP1 Peroxisomal membrane protein 1 (70kD; Zellweger syndrome),PXMP1,,,unmapped
+U79254_at,Clone 23693 mRNA sequence,,,,unmapped
+S66431_at,RBP2,RBP2,9606.ENSP00000232217,RBP2,mapped
+M15841_at,SNRPB2 Small nuclear ribonucleoprotein polypeptide B'',SNRPB2,9606.ENSP00000246071,SNRPB2,mapped
+X65550_at,MKI67 Antigen identified by monoclonal antibody Ki-67,MKI67,9606.ENSP00000357643,MKI67,mapped
+M95678_at,PLCB2 Phospholipase C; beta 2,PLCB2,9606.ENSP00000260402,PLCB2,mapped
+U52682_at,IRF4 Interferon regulatory factor 4,IRF4,9606.ENSP00000370343,IRF4,mapped
+L08246_at,INDUCED MYELOID LEUKEMIA CELL DIFFERENTIATION PROTEIN MCL1,MYELOID,,,unmapped
+U64871_at,G protein-coupled receptor GPR-NGA gene,,,,unmapped
+U40572_at,Beta2-syntrophin (SNT B2) mRNA,SNT,,,unmapped
+U48251_at,Protein kinase C-binding protein RACK7 mRNA; partial cds,C-BINDING,,,unmapped
+X69111_at,ID3 Inhibitor of DNA binding 3; dominant negative helix-loop-helix protein,ID3,9606.ENSP00000363689,ID3,mapped
+D79988_at,KIAA0166 gene,KIAA0166,,,unmapped
+M69043_at,MAJOR HISTOCOMPATIBILITY COMPLEX ENHANCER-BINDING PROTEIN MAD3,MAJOR,,,unmapped
+U40462_at,Ikaros/LyF-1 homolog (hIk-1) mRNA,IKAROS,,,unmapped
+K02777_s_at,GB DEF = T-cell receptor active alpha-chain mRNA from Jurkat cell line,T-CELL,,,unmapped
+X54673_at,SLC6A1 Solute carrier family 6 (neurotransmitter transporter; GABA); member 1,SLC6A1,9606.ENSP00000494136,SLC6A1,mapped
+U07231_at,GRSF1 G-rich RNA sequence binding factor 1,GRSF1,9606.ENSP00000254799,GRSF1,mapped
+U69127_at,FUSE binding protein 3 (FBP3) mRNA; partial cds,FUSE,,,unmapped
+X54199_s_at,PHOSPHORIBOSYLAMINE--GLYCINE LIGASE,,,,unmapped
+U06155_at,GB DEF = Chromosome 1q subtelomeric sequence D1S553,CHROMOSOME,,,unmapped
+AFFX-PheX-M_at,AFFX-PheX-M_at (endogenous control),,,,unmapped
+X70394_at,OZF mRNA,OZF,,,unmapped
+U46499_at,GLUTATHIONE S-TRANSFERASE; MICROSOMAL,GLUTATHIONE,,,unmapped
+HG3546-HT3744_s_at,Pre-Mrna Splicing Factor Sf2p33; Alt. Splice Form 1,PRE-MRNA,,,unmapped
+U01062_at,ITPR3 Inositol 1;4;5-triphosphate receptor; type 3,ITPR3,9606.ENSP00000363435,ITPR3,mapped
+X66867_cds1_at,Max gene extracted from H.sapiens max gene,MAX,9606.ENSP00000351490,MAX,mapped
+U20362_at,Tg737 mRNA,TG737,,,unmapped
+X83490_s_at,GB DEF = Fas/Apo-1 (clone pCRTM11-Fasdelta(3;4)),FAS,9606.ENSP00000498466,FAS,mapped
+U19713_s_at,Allograft inflammatory factor-1 (AIF-1) mRNA,ALLOGRAFT,,,unmapped
+Y00787_s_at,INTERLEUKIN-8 PRECURSOR,INTERLEUKIN-8,,,unmapped
+U05237_at,Fetal Alz-50-reactive clone 1 (FAC1) mRNA,FETAL,,,unmapped
+U63329_at,GB DEF = MutY homolog (hMYH) gene,MUTY,,,unmapped
+D37984_s_at,RECQL RecQ protein-like (DNA helicase Q1-like),RECQL,9606.ENSP00000416739,RECQL,mapped
+Z22551_at,Kinectin gene,KINECTIN,,,unmapped
+U67963_at,Lysophospholipase homolog (HU-K5) mRNA,HU-K5,,,unmapped
+U89922_s_at,LTB Lymphotoxin-beta,LTB,9606.ENSP00000410481,LTB,mapped
+X84908_at,Phosphorylase-kinase; beta subunit,,,,unmapped
+L41887_rna1_at,Splicing factor; arginine/serine-rich 7 (SFRS7) gene,SPLICING,,,unmapped
+D83783_at,KIAA0192 gene; partial cds,KIAA0192,,,unmapped
+M85169_at,Homologue of yeast sec7 mRNA,HOMOLOGUE,,,unmapped
+U79241_at,Clone 23759 mRNA; partial cds,,,,unmapped
+X05323_at,OX-2 MEMBRANE GLYCOPROTEIN PRECURSOR,OX-2,,,unmapped
+U21689_at,SAT Spermidine/spermine N1-acetyltransferase,SAT,,,unmapped
+Z56281_at,Interferon regulatory factor 3,INTERFERON,,,unmapped
+X07730_at,APS Prostate specific antigen,APS,,,unmapped
+X66945_at,FGFR1 Basic fibroblast growth factor (bFGF) receptor (shorter form),FGFR1,9606.ENSP00000393312,FGFR1,mapped
+M94633_at,GB DEF = Recombination acitivating protein (RAG2) gene; last exon,RECOMBINATION,,,unmapped
+L02932_at,PPARA Peroxisome proliferative activated receptor; alpha,PPARA,9606.ENSP00000385523,PPARA,mapped
+X67337_at,HPBRII-4 mRNA,HPBRII-4,,,unmapped
+M81695_s_at,ITGAX Integrin; alpha X (antigen CD11C (p150); alpha polypeptide),ITGAX,9606.ENSP00000454623,ITGAX,mapped
+D87448_at,KIAA0259 gene; partial cds,KIAA0259,,,unmapped
+U65410_at,Mitotic feedback control protein Madp2 homolog mRNA,MITOTIC,,,unmapped
+M16336_s_at,CD2 CD2 antigen (p50); sheep red blood cell receptor,CD2,9606.ENSP00000358490,CD2,mapped
+M31158_at,PRKAR2B Protein kinase; cAMP-dependent; regulatory; type II; beta,PRKAR2B,9606.ENSP00000265717,PRKAR2B,mapped
+U91903_at,Frezzled (fre) mRNA,FREZZLED,,,unmapped
+U51166_at,G/T mismatch-specific thymine DNA glycosylase mRNA,,,,unmapped
+J02645_at,EIF2A Eukaryotic translation initiation factor 2A,EIF2A,9606.ENSP00000417229,EIF2A,mapped
+M95178_at,ALPHA-ACTININ 1; CYTOSKELETAL ISOFORM,ALPHA-ACTININ,,,unmapped
+M31210_at,ECGF1 Endothelial differentiation protein (edg-1),ECGF1,,,unmapped
+X85134_rna1_at,RBQ-3 mRNA,RBQ-3,,,unmapped
+M32334_at,ICAM2 Intercellular adhesion molecule 2,ICAM2,9606.ENSP00000415283,ICAM2,mapped
+D21852_at,KIAA0029 gene; partial cds,KIAA0029,,,unmapped
+D28473_s_at,IARS Isoleucine-tRNA synthetase,IARS,,,unmapped
+M98045_at,Folylpolyglutamate synthetase mRNA,,,,unmapped
+X58072_at,GATA3 GATA-binding protein 3,GATA3,9606.ENSP00000368632,GATA3,mapped
+M16505_at,STS Steroid sulfatase (microsomal),STS,9606.ENSP00000217961,STS,mapped
+M74524_at,UBE2A Ubiquitin-conjugating enzyme E2A (RAD6 homolog),UBE2A,9606.ENSP00000360613,UBE2A,mapped
+HG3111-HT3287_at,Autoantigen (Gb:S67069),AUTOANTIGEN,,,unmapped
+AFFX-CreX-5_st,AFFX-CreX-5_st (endogenous control),,,,unmapped
+D31886_at,KIAA0066 gene; partial cds,KIAA0066,,,unmapped
+D63882_s_at,HsLIM15 mRNA for HsLim15,HSLIM15,,,unmapped
+M21535_at,GB DEF = Erg protein (ets-related gene) mRNA,ERG,9606.ENSP00000414150,ERG,mapped
+D14659_at,KIAA0103 gene,KIAA0103,,,unmapped
+M31899_at,ERCC3 DNA repair helicase ERCC3,ERCC3,9606.ENSP00000285398,ERCC3,mapped
+X03934_at,GB DEF = T-cell antigen receptor gene T3-delta,T-CELL,,,unmapped
+X70476_at,COATOMER BETA' SUBUNIT,COATOMER,,,unmapped
+M84526_at,DF D component of complement (adipsin),DF,,,unmapped
+D26018_at,KIAA0039 gene; partial cds,KIAA0039,,,unmapped
+X16667_at,HOXB3 Homeo box B3,HOXB3,9606.ENSP00000417207,HOXB3,mapped
+U37352_at,PPP2R4 Protein phosphatase 2A; regulatory subunit B' alpha-1,PPP2R4,,,unmapped
+U46751_at,Phosphotyrosine independent ligand p62 for the Lck SH2 domain mRNA,PHOSPHOTYROSINE,,,unmapped
+X61587_at,ARHG Ras homolog gene family; member G (rho G),ARHG,,,unmapped
+D38522_at,KIAA0080 gene; partial cds,KIAA0080,,,unmapped
+L43576_at,(clone EST02946) mRNA,,,,unmapped
+U26424_at,Stress responsive serine/threonine protein kinase Krs-1 mRNA,STRESS,,,unmapped
+D85425_s_at,Transactivator HSM-1,TRANSACTIVATOR,,,unmapped
+U60115_at,Skeletal muscle LIM-protein SLIM1 mRNA,SKELETAL,,,unmapped
+X74570_at,Gal-beta(1-3/1-4)GlcNAc alpha-2.3-sialyltransferase,GAL-BETA,,,unmapped
+U89505_at,Hlark mRNA,HLARK,,,unmapped
+M32304_s_at,TIMP2 Tissue inhibitor of metalloproteinase 2,TIMP2,9606.ENSP00000262768,TIMP2,mapped
+L76702_at,"Protein phosphatase 2A 74 kDa regulatory subunit (delta or B"" subunit)",,,,unmapped
+D21063_at,KIAA0030 gene; partial cds,KIAA0030,,,unmapped
+M63138_at,CTSD Cathepsin D (lysosomal aspartyl protease),CTSD,9606.ENSP00000236671,CTSD,mapped
+D38552_at,KIAA0073 gene; partial cds,KIAA0073,,,unmapped
+X52056_at,SPI1 Spleen focus forming virus (SFFV) proviral integration oncogene spi1,SPI1,9606.ENSP00000227163,SPI1,mapped
+L26234_at,APOBEC1 Apolipoprotein B mRNA editing enzyme; catalytic polypeptide 1,APOBEC1,9606.ENSP00000229304,APOBEC1,mapped
+M75715_s_at,EUKARYOTIC PEPTIDE CHAIN RELEASE FACTOR SUBUNIT 1,EUKARYOTIC,,,unmapped
+U97502_rna1_at,Butyrophilin (BT3.3) gene,BUTYROPHILIN,,,unmapped
+U37426_at,Kinesin-like spindle protein HKSP (HKSP) mRNA,KINESIN-LIKE,,,unmapped
+U31556_at,E2F5 E2F transcription factor 5; p130-binding,E2F5,9606.ENSP00000398124,E2F5,mapped
+AF000231_at,RAS-RELATED PROTEIN RAB-11A,RAS-RELATED,,,unmapped
+U37408_at,CtBP mRNA,CTBP,,,unmapped
+D78275_at,Proteasome subunit p42,PROTEASOME,,,unmapped
+U75308_at,TBP-associated factor (hTAFII130) mRNA; partial cds,TBP-ASSOCIATED,,,unmapped
+U72507_at,40871 mRNA partial sequence,,,,unmapped
+X99920_at,S100 calcium-binding protein A13,S100,,,unmapped
+L08895_at,MEF2C MADS box transcription enhancer factor 2; polypeptide C (myocyte enhancer factor 2C),MEF2C,9606.ENSP00000340874,MEF2C,mapped
+M10901_at,GRL Glucocorticoid receptor,GRL,,,unmapped
+U53003_at,KNP-Ia,KNP-IA,,,unmapped
+M22324_at,ANPEP Alanyl (membrane) aminopeptidase (aminopeptidase N; aminopeptidase M; microsomal aminopeptidase; CD13),ANPEP,9606.ENSP00000300060,ANPEP,mapped
+D14874_at,ADM Adrenomedullin,ADM,9606.ENSP00000436607,ADM,mapped
+U90904_at,Clone 23773 mRNA sequence,,,,unmapped
+U38896_at,Zinc finger protein C2H2-171 mRNA,ZINC,,,unmapped
+X85116_rna1_s_at,Epb72 gene exon 1,EPB72,,,unmapped
+U23852_s_at,GB DEF = T-lymphocyte specific protein tyrosine kinase p56lck (lck) abberant mRNA,T-LYMPHOCYTE,,,unmapped
+L09209_s_at,APLP2 Amyloid beta (A4) precursor-like protein 2,APLP2,9606.ENSP00000497691,APLP2,mapped
+HG4755-HT5203_s_at,Spinal Muscular Atrophy 4,SPINAL,,,unmapped
+L00058_at,MYC V-myc avian myelocytomatosis viral oncogene homolog,MYC,9606.ENSP00000478887,MYC,mapped
+D80000_at,KIAA0178 gene; partial cds,KIAA0178,,,unmapped
+D30037_at,PHOSPHATIDYLINOSITOL,,,,unmapped
+X58528_s_at,PXMP1 Peroxisomal membrane protein 1 (70kD; Zellweger syndrome),PXMP1,,,unmapped
+M22960_at,PPGB Protective protein for beta-galactosidase (galactosialidosis),PPGB,,,unmapped
+Y08614_at,CRM1 protein,CRM1,,,unmapped
+J05200_rna1_s_at,RYR1 gene extracted from Human ryanodine receptor mRNA,RYR1,9606.ENSP00000352608,RYR1,mapped
+M28130_rna1_s_at,Interleukin 8 (IL8) gene,INTERLEUKIN,,,unmapped
+U73167_cds5_at,SM15 gene (human interferon-related protein SM15 (U09585); final exon similar to partial sequence of human EST R48415; but would require alternative splice) extracted from Human cosmid LUCA14,SM15,,,unmapped
+X59739_at,ZFX Zinc finger protein; X-linked,ZFX,9606.ENSP00000368486,ZFX,mapped
+M27891_at,CST3 Cystatin C (amyloid angiopathy and cerebral hemorrhage),CST3,9606.ENSP00000381448,CST3,mapped
+M98833_at,FLI1 Friend leukemia virus integration 1,FLI1,9606.ENSP00000433488,FLI1,mapped
+U80017_rna1_at,Btf2p44 gene (basic transcription factor 2 p44) extracted from Human basic transcription factor 2 p44 (btf2p44) gene; partial cds; neuronal apoptosis inhibitory protein (naip) and survival motor neuron protein (smn) genes,BTF2P44,,,unmapped
+U30828_at,Splicing factor SRp55-2 (SRp55) mRNA,SPLICING,,,unmapped
+M19045_f_at,LYZ Lysozyme,LYZ,9606.ENSP00000261267,LYZ,mapped
+D25304_at,KIAA0006 gene; partial cds,KIAA0006,,,unmapped
+M83652_s_at,PFC Properdin P factor; complement,PFC,,,unmapped
+X84709_at,Mediator of receptor-induced toxicity,MEDIATOR,,,unmapped
+M81118_at,ADH5 Alcohol dehydrogenase 5 chi subunit (class III),ADH5,9606.ENSP00000296412,ADH5,mapped
+S68134_s_at,GB DEF = CREM=cyclic AMP-responsive element modulator beta isoform [human; mRNA; 1030 nt],AMP-RESPONSIVE,,,unmapped
+M27281_at,VEGF Vascular endothelial growth factor,VEGF,,,unmapped
+X87613_at,Skeletal muscle abundant protein,SKELETAL,,,unmapped
+D83776_at,KIAA0191 gene; partial cds,KIAA0191,,,unmapped
+L76927_rna1_at,Galactokinase (GALK1) gene,GALACTOKINASE,,,unmapped
+D10495_at,PRKCD Protein kinase C; delta,PRKCD,9606.ENSP00000331602,PRKCD,mapped
+D42039_at,KIAA0081 gene; partial cds,KIAA0081,,,unmapped
+Z50853_at,CLPP,CLPP,9606.ENSP00000245816,CLPP,mapped
+M28214_at,GB DEF = GTP-binding protein (RAB3B) mRNA,GTP-BINDING,,,unmapped
+X68505_s_at,GB DEF = Myocyte-specific enhancer factor 2 (MEF2),,,,unmapped
+U36922_at,GB DEF = Fork head domain protein (FKHR) mRNA; 3' end,FORK,,,unmapped
+X63097_at,RHD Rhesus blood group; D antigen,RHD,9606.ENSP00000339577,RHD,mapped
+M93056_at,LEUKOCYTE ELASTASE INHIBITOR,LEUKOCYTE,,,unmapped
+Y09980_rna4_at,HOXD3 gene,HOXD3,9606.ENSP00000386498,HOXD3,mapped
+L20941_at,FTH1 Ferritin heavy chain,FTH1,9606.ENSP00000273550,FTH1,mapped
+M97016_s_at,BMP8 Bone morphogenetic protein 8 (osteogenic protein 2),BMP8,,,unmapped
+HG1148-HT1148_at,Lipopolysaccharide-Binding Protein,,,,unmapped
+HG2379-HT3996_s_at,Serine Hydroxymethyltransferase; Cytosolic; Alt. Splice 2,SERINE,,,unmapped
+U41766_s_at,Metalloprotease/disintegrin/cysteine-rich protein precursor (MDC9) mRNA,METALLOPROTEASE,,,unmapped
+X87852_at,SEX gene,SEX,,,unmapped
+L07515_at,HETEROCHROMATIN PROTEIN 1 HOMOLOG,HETEROCHROMATIN,,,unmapped
+D87969_at,CMP-sialic acid transporter,CMP-SIALIC,,,unmapped
+J05073_at,PGAM2 Phosphoglycerate mutase 2 (muscle),PGAM2,9606.ENSP00000297283,PGAM2,mapped
+M57710_at,LGALS3 Lectin; galactoside-binding; soluble; 3 (galectin 3) (NOTE: redefinition of symbol),LGALS3,9606.ENSP00000254301,LGALS3,mapped
+S82472_at,GB DEF = Beta -pol=DNA polymerase beta {exon alpha to exon VII region} [human; Genomic; 124 nt; segment 1 of 2],,,,unmapped

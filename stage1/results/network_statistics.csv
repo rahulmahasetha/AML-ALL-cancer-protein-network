@@ -1,0 +1,2 @@
+total_nodes,total_edges,aml_seed_nodes,neighbor_nodes,connected_components,density,avg_degree,avg_seed_degree,avg_neighbor_degree,seeds_not_in_network
+3695,6963,114,3581,4,0.00102,3.77,62.11,1.91,1

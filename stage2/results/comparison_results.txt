@@ -1,0 +1,8 @@
+Model Comparison Results (Mean ± Std over 5 seeds)
+============================================================
+GCN | Val Loss: 0.4662 ± 0.0302 | Val AUC: 0.9667 ± 0.0408 | Params: {'hidden_dim': 64, 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0005, 'pooling': 'mean', 'use_weights': False}
+GAT | Val Loss: 0.4177 ± 0.0179 | Val AUC: 0.9167 ± 0.0000 | Params: {'hidden_dim': 64, 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0005, 'pooling': 'mean', 'use_weights': False}
+SAGE | Val Loss: 0.4309 ± 0.0068 | Val AUC: 0.9167 ± 0.0000 | Params: {'hidden_dim': 64, 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0005, 'pooling': 'mean', 'use_weights': False}
+
+Best Overall Model: GAT
+Best Params: {'hidden_dim': 64, 'dropout': 0.3, 'lr': 0.001, 'weight_decay': 0.0005, 'pooling': 'mean', 'use_weights': False}
