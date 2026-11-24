@@ -1,0 +1,34 @@
+{
+    "data": {
+        "total_genes": 7129,
+        "aml_samples": 11,
+        "all_samples": 27
+    },
+    "differential_expression": {
+        "significant_genes": 535,
+        "selected_genes": 399
+    },
+    "gene_protein_mapping": {
+        "mapped_genes": 117,
+        "total_genes_to_map": 399,
+        "unique_string_proteins": 115
+    },
+    "ppi_network": {
+        "total_nodes": 3695,
+        "total_edges": 6963,
+        "aml_seed_nodes": 28,
+        "all_seed_nodes": 86,
+        "neighbor_nodes": 3581
+    },
+    "permutation_test": {
+        "n_permutations": 1000,
+        "total_network_proteins": 3695,
+        "aml_observed_mean": 0.206413,
+        "aml_p_value": 0.001998,
+        "all_observed_mean": 0.24257,
+        "all_p_value": 0.000999,
+        "combined_observed_mean": 0.233689,
+        "combined_p_value": 0.000999,
+        "random_seed": 42
+    }
+}
